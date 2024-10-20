@@ -2,7 +2,8 @@ package com.ruf.shiftlab_crm.service.implementation;
 
 import com.ruf.shiftlab_crm.entity.Seller;
 import com.ruf.shiftlab_crm.exceptionHandling.NoSuchException;
-import com.ruf.shiftlab_crm.mapper.SellerMapper;
+
+import com.ruf.shiftlab_crm.mapper.impl.SellerMapper;
 import com.ruf.shiftlab_crm.model.request.CreateSellerRequest;
 import com.ruf.shiftlab_crm.model.response.SellerResponse;
 import com.ruf.shiftlab_crm.repository.SellerRepository;

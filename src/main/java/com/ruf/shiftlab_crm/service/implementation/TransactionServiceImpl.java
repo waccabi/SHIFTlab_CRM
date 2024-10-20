@@ -2,7 +2,7 @@ package com.ruf.shiftlab_crm.service.implementation;
 
 import com.ruf.shiftlab_crm.entity.Transaction;
 import com.ruf.shiftlab_crm.exceptionHandling.NoSuchException;
-import com.ruf.shiftlab_crm.mapper.TransactionMapper;
+import com.ruf.shiftlab_crm.mapper.impl.TransactionMapper;
 import com.ruf.shiftlab_crm.model.request.CreateTransactionRequest;
 import com.ruf.shiftlab_crm.model.response.TransactionResponse;
 import com.ruf.shiftlab_crm.repository.SellerRepository;
@@ -41,6 +41,11 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public TransactionResponse save(CreateTransactionRequest createTransactionRequest) {
+
+       if(sellerRepository.findById(createTransactionRequest.getSellerId()).isEmpty()){
+           throw new NoSuchException("isn't seller "+ createTransactionRequest.getSellerId());
+       }
+       createTransactionRequest.setSeller(sellerRepository.findById(createTransactionRequest.getSellerId()).get());
         Transaction transaction = transactionMapper.toEntity(createTransactionRequest);
         Transaction savedTransaction = transactionRepository.save(transaction);
         return transactionMapper.toResponse(savedTransaction);

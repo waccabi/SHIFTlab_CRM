@@ -11,7 +11,8 @@ import java.time.LocalDateTime;
 @Data
 @Accessors(chain = true)
 public class CreateTransactionRequest {
-    private Seller seller;
+    private Long sellerId;
     private BigDecimal amount;
     private PaymentType paymentType;
+    private Seller seller;
 }
